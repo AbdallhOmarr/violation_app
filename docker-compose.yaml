@@ -1,0 +1,22 @@
+services:
+  api:
+    build: ./api
+    ports:
+      - "8000:8000"
+    networks:
+      backend:
+
+
+  web:
+    build: ./web
+    ports:
+      - "80:80"
+
+    depends_on:
+      - api
+    networks:
+      backend:
+
+# Networks
+networks:
+  backend:

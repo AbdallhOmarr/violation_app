@@ -1,0 +1,24 @@
+# Base Image
+FROM python:3.11-slim
+
+# Environment Variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# Set Working Directory
+WORKDIR /app
+
+# Install dependencies
+COPY requirements.txt /app/
+
+# Copy project
+COPY . /app/
+RUN pip install --no-cache-dir -r requirements.txt
+
+
+# Expose port
+EXPOSE 8000
+
+# Start Command
+CMD ["gunicorn", "myproject.wsgi:application", "--bind", "0.0.0.0:8000"]
+
