@@ -29,6 +29,7 @@ export const useAuthStore = defineStore('auth', () => {
                 Cookies.set('access_token', token);
                 Cookies.set('me', me);
                 api.defaults.headers.common['Authorization'] = `Token ${token}`;
+
                 router.push('/');
             }
         } catch (err) {

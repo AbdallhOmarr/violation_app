@@ -4,7 +4,7 @@ import { Cookies } from 'quasar';
 import { handelErrore } from 'src/helper/hendelErrore';
 import { sendNotify } from 'src/helper/notify';
 
-const api = axios.create({ baseURL: 'http://localhost:8000/api/' });
+const api = axios.create({ baseURL: 'https://systemgenius.site/api/' });
 
 export default boot(({ app, redirect, ssrContext }) => {
   const cookies = process.env.SERVER ? Cookies.parseSSR(ssrContext) : Cookies;

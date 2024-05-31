@@ -41,10 +41,13 @@ MIDDLEWARE = [
 ]
 
 # CORS settings
-CORS_ALLOW_ALL_ORIGINS = True  # Allow any origin
-CORS_ALLOW_CREDENTIALS = (
-    True  # Allow sending cookies in cross-origin requests (if needed)
-)
+CORS_ALLOWED_ORIGINS = [
+    "https://emerging-chief-bulldog.ngrok-free.app",
+]
+
+# If you want to allow all origins for development:
+CORS_ALLOW_ALL_ORIGINS = True
+
 
 ROOT_URLCONF = "myproject.urls"
 
