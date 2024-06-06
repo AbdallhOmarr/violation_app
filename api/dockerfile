@@ -14,11 +14,13 @@ COPY requirements.txt /app/
 # Copy project
 COPY . /app/
 RUN pip install --no-cache-dir -r requirements.txt
+RUN python manage.py makemigrations
+RUN python manage.py migrate
 
 
 # Expose port
-EXPOSE 8000
+EXPOSE 80
 
 # Start Command
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["gunicorn", "myproject.wsgi:application", "--bind", "0.0.0.0:80"]
 

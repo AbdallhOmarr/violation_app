@@ -73,6 +73,7 @@ class Trainer(AbstractBaseUser, PermissionsMixin):
 
 class Department(models.Model):
     department_name = models.CharField(max_length=255)
+    department_major = models.CharField(max_length=255,default="Major-default") 
 
 class Trainee(models.Model):
     academic_number = models.BigIntegerField(unique=True)
