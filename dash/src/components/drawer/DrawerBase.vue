@@ -15,7 +15,7 @@
             <q-item-section v-if="list.icon" avatar>
               <q-icon :name="list.icon" :color="(route.fullPath == '/' && list.path.includes('home')) ||
                 route.fullPath.includes(list.path)
-                ? 'warning' : 'primary'"></q-icon>
+                ? 'warning' : $q.dark.isActive ? 'white' : 'primary'"></q-icon>
             </q-item-section>
 
             <q-item-section>
@@ -37,7 +37,7 @@
         <div class="col text-h6 text-primary text-italic">
           <q-img src='logoImage.svg' class="q-ma-sm" style="height: 50px; width: 100px;" />
         </div>
-        <div class="q-mx-md col-12 text-primary text-italic">
+        <div class="q-mx-md col-12  text-italic" :class="$q.dark.isActive ? 'text-white' : 'text-primary'">
           الكلية التقنية بمحافظة طبرجل
         </div>
       </div>

@@ -13,21 +13,44 @@
     <!-- pdf 1-->
     <div style="display: none">
         <div id="violation" dir="rtl">
-            <div class="tbl-header">
-                <p style="font-size:large; font-weight: bold;word-spacing: 10px;padding: 5px">
-                    :المتدرب {{
-                        details?.trainee_name }}</p>
+            <div class="report-container">
+                <header class="report-header">
+                    <p class="report-title">تعهد</p>
+                </header>
+                <div class="report-content">
+                    <section class="report-section">
+                        <div class="section-content">
+                            <div class="row">
+                                <div class="col-label"> المتدرب</div>
+                                <div class="col-value"> {{ details?.trainee_name }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-label"> المخالفة</div>
+                                <div class="col-value"> {{ details?.violation_type }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-label">التاريخ</div>
+                                <div class="col-value">{{ details?.date }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-label">معد المخالفة</div>
+                                <div class="col-value">{{ details?.trainer_name }}</div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="report-section">
+                        <div class="section-content">
 
-                <p style="font-size:large; font-weight: bold;word-spacing: 10px;padding: 5px">المخالفة </p>
-                <p style="font-size:large; font-weight:normal; padding: 5px;word-spacing: 10px;">
-                    {{ details?.violation_details }}
-                </p>
-                <p style="font-size:large; font-weight:normal; padding: 5px;word-spacing: 10px;">
-                    أتعهد بعدم تكرار المخالفة والالتزام بالتعليمات
-                    كافة
-                </p>
-                <p style="font-size:large; font-weight: bold;padding: 5px">------------------ :التاريخ </p>
-                <p style="font-size:large; font-weight: bold;padding: 5px">------------------ :التوقيع </p>
+                            <p style="font-size: 24px;"> اتعهد بالتزام بكافة التعليمات</p>
+
+                        </div>
+                    </section>
+                    <footer class="report-footer">
+                        <p> الاسم ---------------------</p>
+                        <p> التاريخ ---------------------</p>
+                        <p> التوقيع ---------------------</p>
+                    </footer>
+                </div>
             </div>
         </div>
     </div>
@@ -133,4 +156,55 @@ onMounted(async () => {
     Loading.hide()
 })
 </script>
-  
+<style>
+.report-container {
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    text-align: right;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.report-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.report-title {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.report-section {
+    margin-bottom: 10px;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.section-content {
+    text-align: center;
+    margin-bottom: 20px
+}
+
+.row {
+    display: flex;
+    justify-content: start;
+    margin-bottom: 10px;
+}
+
+.col-label {
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.report-footer {
+    text-align: start;
+    color: #666;
+    font-size: 14px;
+}
+</style>

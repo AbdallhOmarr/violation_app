@@ -5,7 +5,7 @@
     <div class="row q-pa-md">
         <q-expansion-item class="shadow-1 w-full overflow-hidden col" style="border-radius: 20px" icon="filter_alt" label=""
             header-class="bg-primary text-white" expand-icon-class="text-white" default-opened>
-            <div class="row bg-white">
+            <div class="row " :class="$q.dark.isActive ? 'bg-dark' : 'bg-white'">
                 <div class="col-6">
                     <q-list dense bordered class="rounded-borders q-ma-md" style="height: 300px;">
                         <q-item-label header>ادارة</q-item-label>
@@ -19,8 +19,7 @@
                             <q-item-section>
                                 <c-btn class="q-mx-md" label="استعلام" @click="filter('filter')" :size="md"></c-btn>
                             </q-item-section><q-item-section>
-                                <c-btn v-if="detailsTrainer?.is_superuser" label="ادخال مخالفة" @click="filter('add')"
-                                    :size="md"></c-btn>
+                                <c-btn label="ادخال مخالفة" @click="filter('add')" :size="md"></c-btn>
                             </q-item-section>
                         </q-item>
                     </q-list>
@@ -35,7 +34,7 @@
                                         اسم المتدرب
                                     </div>
                                     <div
-                                        style="border: 1px dashed black; padding: 15px; background: rgb(240, 239, 239);text">
+                                        style="border: 1px dashed black; padding: 15px; background: rgb(240, 239, 239);color: black;">
                                         {{ trainee?.full_name }}
                                     </div>
                                 </div>
@@ -48,7 +47,7 @@
                                         القسم
                                     </div>
                                     <div
-                                        style="border: 1px dashed black; padding: 15px; background: rgb(240, 239, 239);text">
+                                        style="border: 1px dashed black; padding: 15px; background: rgb(240, 239, 239);color: black;">
                                         {{ trainee?.department_name }}
                                     </div>
                                 </div>
@@ -137,8 +136,8 @@ const filter = async (add) => {
     if (add == "add") {
         violationStore.resetRequest()
         const currentDate = new Date();
-        const hijriDate = hijriDateFormatter.format(currentDate).substring(6, 10) + '-' + hijriDateFormatter.format(currentDate).substring(0, 2) + '-' + hijriDateFormatter.format(currentDate).substring(3, 5);
-        console.log(hijriDate.fullYear)
+        const arrayDate = hijriDateFormatter.format(currentDate).split("/")
+        const hijriDate = arrayDate[2].substring(0, 4) + '-' + (arrayDate[0].length == 1 ? "0" + arrayDate[0] : arrayDate[0]) + '-' + (arrayDate[1].length == 1 ? "0" + arrayDate[1] : arrayDate[1]);
         request.value.date = hijriDate
         await traineesStore.index()
         edit.value = false
@@ -185,6 +184,7 @@ const columns = computed(() => {
             align: 'center',
             label: 'مدخل المخالفة',
             field: 'trainer_name',
+            sortable: true
         },
         {
             name: 'action',

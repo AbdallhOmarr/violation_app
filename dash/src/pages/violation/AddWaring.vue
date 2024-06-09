@@ -3,9 +3,6 @@
         <form-component :titel="props.edit ? 'تعديل بيانات المخالفة ' : 'اضافة مخالفة'" @clear:data="clear"
             @update:data="save" :loading="loading.type == 'change' ? loading.value : false">
             <template #content>
-                <InputSelect :readonly="true" label=" المتدرب " col="6" :isValid="true" @update:text="setTrainee"
-                    :default="request?.trainee" :options="listTrainee" optionLabel="full_name"
-                    :loading="loadingTrainee.type == 'list' ? loadingTrainee.value : false"></InputSelect>
                 <InputDate label=" تاريخ  المخالفة" col="6" :isValid="true" @update:text="setDate" :default="request?.date">
                 </InputDate>
                 <InputSelect label="نوع المخالفة" col="6" @update:text="setType" :default="request?.violation_type"
